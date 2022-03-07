@@ -1,0 +1,16 @@
+kind: pipeline
+name: AtomX Drone
+
+steps:
+ - name: Update_linux_repos
+   image: atomxorg/archlinux:latest
+   environment:
+     GIT_TOKEN:
+       from_secret: GIT_TOKEN
+     GIT_USER:
+       from_secret: GIT_USER
+     GIT_EMAIL:
+       from_secret: GIT_EMAIL
+   commands:
+      - cd /drone/src
+      - bash worker.sh
